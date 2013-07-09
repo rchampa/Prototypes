@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="libs/gdx.jar" sourcepath="libs/gdx-sources.jar"/>
+	<classpathentry kind="lib" path="libs/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/fluent-hc-4.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-cache-4.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/httpmime-4.2.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
