@@ -1,0 +1,5 @@
+Concierto Madona;Estadio Vicente Calderon;40.402260;-3.63114000;2013/01/15 20:00:00;2013/01/16 02:00:00;
+Misa por Benedicto XVI;Catedral Almudena;40.416690;-3.66747590;2013/01/30 19:00:00;2013/01/30 20:00:00;
+Juego R.Madrid - Barcelona;Estadio Santiago Bernabeu;40.418560;-3.70123060;2013/02/01 22:00:00;2013/02/02 00:00:00;
+Concierto de Año Nuevo;Plaza de España;40.443050;-3.60599490;2013/01/01 18:00:00;2013/01/01 20:00:00;
+Eclipse lunar;Casa de Campo;40.4589;-3.68382800;2013/03/01 21:00:00;2013/03/01 21:00:00;

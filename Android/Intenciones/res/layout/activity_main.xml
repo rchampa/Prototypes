@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/abrirWebB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/abrirWebB" 
+        android:onClick="pgWeb"/>
+
+    <Button
+        android:id="@+id/llamadaTlfB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/llamadaTlfB"
+        android:onClick="llamadaTelefono" />
+    
+    <Button
+        android:id="@+id/marcarTlfB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/marcarTlfB"
+        android:onClick="marcarTelefono" />
+
+    <Button
+        android:id="@+id/gmapsB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gMapsB"
+        android:onClick="googleMaps" />
+
+    <Button
+        android:id="@+id/tomarFotoB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tomarFotoB"
+        android:onClick="tomarFoto" />
+
+    <Button
+        android:id="@+id/enviarCorreoB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enviarCorreoB"
+        android:onClick="mandarCorreo" />
+
+</LinearLayout>

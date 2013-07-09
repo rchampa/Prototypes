@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30dip"
+    tools:context=".Localizacion" >
+
+    <TextView
+        android:id="@+id/asteroidesTV"
+        style="@style/MiEstilo.grande"
+	    android:text="@string/asteroides_tv" 
+	    />
+
+    <Button
+        android:id="@+id/jugarB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/jugarB"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/configurarB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/configurarB"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/acercaDeB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/acercaDeB"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/salirB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/salirB"
+        android:textSize="50sp" />
+
+</LinearLayout>

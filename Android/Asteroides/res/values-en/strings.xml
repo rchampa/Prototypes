@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Asteroides</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="asteroides_tv">Asteroides</string>
+    <string name="jugarB">Play</string>
+    <string name="configurarB">Configuration</string>
+    <string name="acercaDeB">About</string>
+    <string name="puntuacionesB">Scores</string>
+    <string name="puntuacionesMsj">There is not scores</string>
+    <string name="salirB">Exit</string>
+    
+    <string-array name="tiposGraficos">
+	  	<item>vectorial</item>
+		<item>bitmap</item>
+		<item>3D</item>
+	</string-array>
+
+	<string-array name="tiposGraficosValores">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

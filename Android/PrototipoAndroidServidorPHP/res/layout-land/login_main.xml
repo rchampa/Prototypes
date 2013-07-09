@@ -1,0 +1,86 @@
+<LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:id="@+id/layout1" 
+          android:background="#FFFFFF"
+                
+          >
+              
+          
+          <!--  Usuario Label -->
+          
+          <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#372c24"
+                android:layout_marginTop="5dip"
+               android:text="@string/user_login"
+            />
+                
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="20dip"
+                android:singleLine="true"
+                android:inputType="textPersonName"
+                android:id="@+id/edusuario"
+                android:background="@drawable/edittext_rounded_corners"
+                
+           />
+                
+          <!--  Password Label -->
+          
+          <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#372c24"
+                android:text="@string/pass_login"/>
+                
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                android:id="@+id/edpassword"
+                android:background="@drawable/edittext_rounded_corners"
+                
+                />
+                
+        
+                
+          <!-- Login button -->
+          <Button 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="@string/login_login"
+                android:id="@+id/Blogin"
+                />
+                
+          <!-- Link to Registration Screen -->
+          <TextView android:id="@+id/link_to_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_login"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#8A0808"/>
+         
+          <!-- Link to forgot passw -->
+                
+          <TextView android:id="@+id/forgotpassw"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/forget_pass_login"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0b84aa"/>
+                
+ 
+</LinearLayout>
+
+
+
+
+
+

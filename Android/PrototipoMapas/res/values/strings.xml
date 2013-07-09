@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Prototipo Mapas </string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_legalnotices">Aviso Legal</string>
+    <string name="menu_vista">Vista</string>
+    <string name="menu_mover">Mover</string>
+    <string name="menu_animar">Animar</string>
+    <string name="menu_mover3D">Mover 3D</string>
+    <string name="menu_posicion">Posición</string>
+    <string name="menu_posicion_actual">Donde Estoy?</string>
+    <string name="menu_calcular_MadridABarcelona">Calcular ruta</string>
+
+</resources>

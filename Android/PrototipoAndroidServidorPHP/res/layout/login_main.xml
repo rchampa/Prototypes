@@ -1,0 +1,83 @@
+<LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:padding="20dip"
+          android:id="@+id/layout1" 
+          android:background="#FFFFFF"
+                
+          >
+         <!--  Logo -->
+          
+            <ImageView android:layout_height="wrap_content" 
+   		   	  android:src="@drawable/android"
+		      android:id="@+id/img" 
+		      android:layout_width="fill_parent"
+		      android:layout_marginTop="10dp"
+		      android:gravity="center"
+		      android:contentDescription="@string/logo_login"	>	      
+           </ImageView>
+                    
+          <!--  Email Label -->
+          
+          <TextView
+				style="@style/EstiloLoginTV"
+                android:text="@string/user_login"
+           />
+                
+          <EditText 
+              	style="@style/EstiloLoginET"
+                android:id="@+id/edusuario"
+                android:background="@drawable/edittext_rounded_corners"                
+           />
+                
+          <!--  Password Label -->
+          
+          <TextView 
+              	style="@style/EstiloLoginTV"
+                android:text="@string/pass_login"/>
+                
+          <EditText 
+              	style="@style/EstiloLoginET.password"
+                android:id="@+id/edpassword"
+                android:background="@drawable/edittext_rounded_corners"
+          />
+                
+          <!-- Login button -->
+          <Button 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/login_login"
+                android:id="@+id/Blogin"
+                android:background="@drawable/button_rounded_corners"
+                />
+                
+          <!-- Link to forgot passw -->
+          
+          <TextView android:id="@+id/forgotpassw"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/forget_pass_login"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#0b84aa"/>
+         
+          <!-- Link to Registration Screen -->
+                
+          <TextView android:id="@+id/link_to_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_login"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#8A0808"/>
+ 
+</LinearLayout>
+
+
+
+

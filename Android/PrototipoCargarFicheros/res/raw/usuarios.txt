@@ -1,0 +1,6 @@
+Adolfo;Urrutia;40.411455;-3.754985;M;1234;aUrrutia@Upm.es;Profesores;
+Rosibel;Kreimann;40.414718;-3.696998;F;8524;rKreimann@Upm.es;Alumno;
+Valentin;Zambrana;40.478292;-3.740221;M;6547;vZambrana@Upm.es;Profesores;
+Anselmo;Lopez;40.444318;-3.728227;M;9713;aLopez@Upm.es;Profesores;
+Jacinta;Uriarte;40.448292;-3.654985;F;5791;jUriarte@Upm.es;Profesores;
+Ricardo;Champa;88.448292;-32.654985;F;5791;rmchampa@ucm.es;Alumnmo;

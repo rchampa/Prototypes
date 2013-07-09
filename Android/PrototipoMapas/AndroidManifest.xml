@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.prototipomapas"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    
+    <!-- Permisos mínimos para el uso de GMaps en Android
+		-MAPS_RECEIVE
+		-READ_GSERVICES
+		-INTERNET
+		-WRITE_EXTERNAL_STORAGE    
+     -->
+    <permission
+      android:name="com.example.prototipomapas.permission.MAPS_RECEIVE"
+      android:protectionLevel="signature"/>
+ 
+	<uses-permission android:name="com.example.permission.MAPS_RECEIVE"/>
+	
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	
+	<!-- Permisos para poder geolocalizar la posición actual del dispositivo -->
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	
+	<!-- Permisos para usar GPS -->
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	
+	
+	<!-- La version de Android V2 sólo funciona con OpenGL 2.0 o superior -->
+	
+	<uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+
+    <application
+        android:allowBackup="true" 
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <!-- APIKey oficial AIzaSyAXhGatZI7Dh3TJSAFRYjPzsAkPha2J-sI 
+        	 APIKey eclipse AIzaSyCRSPBDR8kmL-ydVYPm9uUSD3buLWlxY2M
+        -->
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+               android:value="AIzaSyAXhGatZI7Dh3TJSAFRYjPzsAkPha2J-sI"/>
+        
+        <activity
+            android:name="com.example.prototipomapas.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

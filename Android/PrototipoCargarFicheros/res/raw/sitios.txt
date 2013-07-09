@@ -1,0 +1,5 @@
+El Rey del pincho;Atocha;40.405260;-3.73703000;Bar;Bar de tapas;
+El Brillante;Puerta del Sol;40.416690;-3.61708090;Bar;Bar de tapas;
+La Merluza;El Retiro;40.412560;-3.64703360;Restaurante;Especialista en pescados;
+Burger King;Nuevos Ministerios;40.447050;-3.68709900;Hamburguesería; Comida rápida;
+100 montaditos; Chamartín;40.448900;-3.69702100;Tapas y cañas;Tapas y cañas;

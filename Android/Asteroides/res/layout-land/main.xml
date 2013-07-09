@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30dip"
+    tools:context=".Localizacion" >
+
+    <TextView
+        android:id="@+id/asteroidesTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:gravity="center"
+        android:text="@string/asteroides_tv"
+        android:textSize="25sp " />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:stretchColumns="*" >
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/jugarB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jugarB" />
+
+            <Button
+                android:id="@+id/configurarB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/configurarB" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/acercaDeB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="lanzarAcercaDe"
+                android:text="@string/acercaDeB" />
+
+            <Button
+                android:id="@+id/puntuacionesB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/puntuacionesB" />
+
+        </TableRow>
+         <TableRow android:gravity="center">
+
+            <Button
+                android:id="@+id/salirB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               
+                android:onClick="salir"
+                android:text="@string/salirB" />
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

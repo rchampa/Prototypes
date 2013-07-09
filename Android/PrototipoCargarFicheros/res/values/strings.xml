@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Prototipo para cargar ficheros .txt</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="cargarButton">Cargar el fichero interno</string>
+    <string name="contenidoTV">Contenido&#8230;</string>
+
+</resources>

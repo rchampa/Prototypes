@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EjemploGraficosActivity" >
+
+    <com.example.ejemplograficos.EjemploView
+        android:id="@+id/ejemploView1"
+        android:layout_width="200px"
+        android:layout_height="100px" />
+
+    <com.example.ejemplograficos.EjemploView
+        android:id="@+id/ejemploView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

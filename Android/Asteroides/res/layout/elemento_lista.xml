@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="fill_parent"
+       android:layout_height="?android:attr/listPreferredItemHeight">
+       
+       <ImageView android:id="@+id/icono"
+              android:layout_width="?android:attr/listPreferredItemHeight"
+             android:layout_height="fill_parent"
+             android:layout_alignParentLeft="true"
+             android:src="@drawable/asteroide2"/>
+       <TextView android:id="@+id/titulo"
+              android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/icono"
+             android:layout_alignParentTop="true"
+             android:textAppearance="?android:attr/textAppearanceLarge"
+             android:singleLine="true" />
+       <TextView android:id="@+id/subtitulo"
+              android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:text=""
+             android:layout_toRightOf="@id/icono"
+             android:layout_below="@id/titulo"
+             android:layout_alignParentBottom="true"
+             android:gravity="center"/>
+</RelativeLayout>

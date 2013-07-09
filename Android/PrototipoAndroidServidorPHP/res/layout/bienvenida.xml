@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent"
+	  android:background="#FFFFFF"
+	  android:orientation="vertical"
+	  >
+    <TextView
+        android:id="@+id/TextView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:gravity="center"
+        android:text="@string/bienvenido_bienvenida"
+        android:textColor="#21610B"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/usr_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dip"
+        android:gravity="center"
+        android:textColor="#FF4000"
+        android:textIsSelectable="true"
+        android:textSize="22sp" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/logoff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usr_name"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_alignParentBottom = "true"
+        android:layout_marginTop="45dip"
+        android:text="@string/cerrar_sesion_bienvenida"
+        android:textColor="#B40404"
+        android:textSize="22sp" />
+    
+
+</RelativeLayout>
