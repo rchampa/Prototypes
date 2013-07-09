@@ -1,0 +1,13 @@
+target/
+*~
+*largeEWD.txt.gz
+TODO.txt
+gen/
+bin/
+*.map
+*.osm
+graph-*/
+*-gh/
+loc2idIndex/
+scripts/googlecode_upload.py
+deploy.sh
