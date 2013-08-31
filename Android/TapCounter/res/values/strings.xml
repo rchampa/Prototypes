@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tap Counter</string>
+    <string name="counter_label_hint">Label Counter</string>
+    <string name="plus">PLUS</string>
+    <string name="minus">MINUS</string>
+    <string name="locked">Locked</string>
+    <string name="unlocked">Unlocked</string>
+    
+    <string name="vibrate">Vibrate</string>
+    <string name="vibrate_summary">Vibrate on click</string>
+    <string name="click">Click</string>
+    <string name="click_summary">Play click sound on count</string>
+    <string name="volume">Volume</string>
+    <string name="volume_summary">Volume of clicks</string>
+    <string name="voice">Voice</string>
+    <string name="voice_summary">Speak the counts</string>
+    <string name="voice_interval">Voice Interval</string>
+    <string name="voice_interval_summary">Interval for the voice to count</string>
+    
+    <string name="select">Select</string>
+    <string name="load">Load</string>
+    <string name="delete">Delete</string>
+    <string name="increment">Increment</string>
+    <string name="decrement">Decrement</string>
+    
+</resources>

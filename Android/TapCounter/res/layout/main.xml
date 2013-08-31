@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <LinearLayout 
+    	android:layout_width="0dp"
+    	android:layout_height="0dp"
+    	android:focusable="true"
+    	android:focusableInTouchMode="true"
+		/>
+    
+    <LinearLayout 
+    	android:id="@+id/headerBar"
+    	android:layout_width="fill_parent"
+    	android:layout_height="48dp"
+    	android:background="@color/header"
+    	/>
+    
+    <ImageView 
+    	android:id="@+id/taps"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="10dp"
+    	android:layout_marginLeft="10dp"
+    	android:layout_alignParentLeft="true"
+    	android:src="@drawable/taps"
+    	/>
+    
+    <TextView
+    	style="@style/TapText"
+		android:id="@+id/countView" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:layout_marginTop="0dp"
+    	android:layout_marginRight="10dp"
+    	android:layout_alignParentRight="true"
+    	android:gravity="right"
+		android:text="0"
+		/>
+    
+	<EditText
+		style="@style/EditText"
+		android:id="@+id/label"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:hint="@string/counter_label_hint"
+	    android:layout_below="@id/headerBar"
+	    android:layout_margin="5dp"
+	    android:singleLine="true"
+	    />
+
+	<ImageView 
+		android:id="@+id/plusBtn" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="@string/plus" 
+		android:layout_below="@id/label"
+		android:layout_margin="5dp"
+		android:src="@drawable/btn_plus"
+		android:layout_centerHorizontal="true"
+		android:scaleType="centerInside"
+		/>
+
+		
+	<ToggleButton 
+		style="@style/LockButton"
+		android:id="@+id/lockBtn" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:layout_margin="8dp"
+		/>
+	
+	<ImageView 
+		android:id="@+id/tapCounter"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_alignTop="@+id/minusBtn"
+		android:layout_centerHorizontal="true"
+		android:paddingTop="20dp"
+		android:src="@drawable/tap_counter"
+		/>
+		
+	<Button 
+		android:id="@+id/minusBtn" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_alignParentBottom="true" 
+		android:layout_alignParentRight="true"
+		android:background="@drawable/btn_minus"
+		android:layout_margin="8dp"
+		/>
+	  
+</RelativeLayout>

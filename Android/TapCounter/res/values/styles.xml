@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="TapTheme" parent="android:Theme.Light">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:typeface">sans</item>
+	</style>
+	
+	<style name="TapText" parent="android:Widget.TextView">
+		<item name="android:textSize">36sp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/black</item>
+	</style>
+	
+	<style name="LockButton" parent="@android:style/Widget.Button.Toggle">
+		<item name="android:background">@drawable/btn_lock_bg</item>
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
+	</style>
+	
+	<style name="EditText" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+	
+	
+    
+</resources>

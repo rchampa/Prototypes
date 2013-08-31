@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory
+		android:key="first_category"
+		android:title="Notifications"
+		>
+		
+		<CheckBoxPreference 
+			android:key="vibrate"
+			android:title="@string/vibrate"
+			android:summary="@string/vibrate_summary"
+			android:defaultValue="true"
+		/>
+		
+		<CheckBoxPreference 
+			android:key="click"
+			android:title="@string/click"
+			android:summary="@string/click_summary"
+			android:defaultValue="true"
+		/>
+        
+        <com.musselwhizzle.tapcounter.preferences.SeekBarPreference
+        	android:key="volume"
+	        android:title="@string/volume"
+	        android:summary="@string/volume_summary"
+	        android:dependency="click"
+	        android:numeric="integer"
+	        android:max="100"
+	        android:defaultValue="5"
+        />
+		
+		<CheckBoxPreference 
+			android:key="speak"
+			android:title="@string/voice"
+			android:summary="@string/voice_summary"
+			android:defaultValue="true"
+		/>
+		
+		<EditTextPreference
+            android:key="speak_interval"
+            android:title="@string/voice_interval" 
+            android:summary="@string/voice_interval_summary"
+            android:dialogTitle="@string/voice_interval"
+            android:dialogMessage="@string/voice_interval_summary"  
+            android:numeric="integer"  
+            android:defaultValue="10" 
+            android:dependency="speak"
+        />
+        
+	</PreferenceCategory>
+  
+</PreferenceScreen>
