@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/cancionB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="45dp"
+        android:text="Selecciona una canción" />
+
+    <Button
+        android:id="@+id/playB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cancionB"
+        android:layout_below="@+id/cancionB"
+        android:layout_marginTop="26dp"
+        android:text="Play" />
+
+    <Button
+        android:id="@+id/pauseB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/playB"
+        android:layout_alignBottom="@+id/playB"
+        android:layout_toRightOf="@+id/playB"
+        android:text="II" />
+
+    <Button
+        android:id="@+id/stopB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pauseB"
+        android:layout_alignBottom="@+id/pauseB"
+        android:layout_toRightOf="@+id/pauseB"
+        android:text="Stop" />
+
+    <TextView
+        android:id="@+id/nombreCancionTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playB"
+        android:layout_marginTop="32dp"
+        android:layout_toLeftOf="@+id/pauseB"
+        android:text="Canción: " />
+
+</RelativeLayout>
