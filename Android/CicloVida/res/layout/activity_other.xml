@@ -5,22 +5,14 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/logTV"
+        android:id="@+id/logTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="23dp" />
+        android:layout_marginTop="23dp"
+        android:text="@string/another_window" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:text="@string/button_string"
-        android:onClick="onClick" />
 
 </RelativeLayout>
