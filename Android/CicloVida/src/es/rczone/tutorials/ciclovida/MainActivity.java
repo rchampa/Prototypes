@@ -1,13 +1,13 @@
 package es.rczone.tutorials.ciclovida;
 
-import com.example.ciclovida.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import es.rczone.tutorials.R;
+import es.rczone.tutorials.tools.MyDebug;
 
 
 public class MainActivity extends Activity {
@@ -34,7 +34,8 @@ public class MainActivity extends Activity {
 			builder.append('\n');
 		}
 		
-		Log.d("Activity lifecycle", text);
+		if(MyDebug.LOG) Log.d("Activity lifecycle", text);
+		
 		builder.append(text);
 		builder.append('\n');
 		textView.setText(builder.toString());		

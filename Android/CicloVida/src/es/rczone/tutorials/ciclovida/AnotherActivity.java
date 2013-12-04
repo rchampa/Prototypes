@@ -1,9 +1,8 @@
 package es.rczone.tutorials.ciclovida;
 
-import com.example.ciclovida.R;
-
 import android.app.Activity;
 import android.os.Bundle;
+import es.rczone.tutorials.R;
 
 public class AnotherActivity extends Activity {
 	
