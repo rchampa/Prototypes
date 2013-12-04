@@ -44,32 +44,32 @@ public class MainActivity extends Activity {
 	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceEstado) {
 		
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceEstado);
 		setContentView(R.layout.activity_main);
 		
 		textView = (TextView)findViewById(R.id.logTV);
 		
-		log("State: created");
+		log("Estado: created");
 	}
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
-		log("State: started");
+		log("Estado: started");
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		log("State: resumed");
+		log("Estado: resumed");
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		log("State: paused");
+		log("Estado: paused");
 		if (isFinishing()) {
 			log("finishing");
 		}
@@ -78,19 +78,19 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		log("State: stopped");
+		log("Estado: stopped");
 	}
 	
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		log("State: restarted");
+		log("Estado: restarted");
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		log("State: destroyed");
+		log("Estado: destroyed");
 	}
 
 }

@@ -2,11 +2,10 @@
 <resources>
 
     <string name="app_name">Ciclo de Vida</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="activity_main">Activity main</string>
-    <string name="activity_another">Activity another</string>
-    <string name="menu_settings">Settings</string>
-    <string name="button_string">New window</string>
-    <string name="another_window">Another window</string>
+    <string name="activity_main">Actividad principal</string>
+    <string name="activity_another">Actividad another</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="button_string">Nueva actividad</string>
+    <string name="another_window">Actividad another</string>
 
 </resources>
