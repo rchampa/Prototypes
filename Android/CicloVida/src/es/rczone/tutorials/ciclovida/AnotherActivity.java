@@ -1,4 +1,6 @@
-package com.example.ciclovida;
+package es.rczone.tutorials.ciclovida;
+
+import com.example.ciclovida.R;
 
 import android.app.Activity;
 import android.os.Bundle;
