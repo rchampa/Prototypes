@@ -1,0 +1,56 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/menu_vista"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Vista"/>
+    
+    
+    
+    <item android:id="@+id/menu_mover"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Mover"/>
+    
+    <item android:id="@+id/menu_animar"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Animar"/>
+    
+    <item android:id="@+id/menu_3d"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Mover 3D"/>
+    
+    <item android:id="@+id/menu_posicion"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Posición"/>
+    
+    <item android:id="@+id/Madrid_Barcelona"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Ruta"/>
+    
+    <item android:id="@+id/menu_borrar_polylineas"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Limpiar pantalla"/>
+    
+    <item android:id="@+id/menu_direccion"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Introduce una dirección"/>
+    
+    <item android:id="@+id/menu_mostrar_radio"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Mostrar radio"/>
+    
+    
+    <item android:id="@+id/menu_legalnotices"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Legal notice"/>
+
+</menu>

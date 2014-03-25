@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView android:text="Insertar" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <EditText android:id="@+id/editText1" android:layout_height="wrap_content" android:layout_width="match_parent">
+        <requestFocus></requestFocus>
+    </EditText>
+    <Button android:text="Insertar" android:onClick="insertar" android:id="@+id/button1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+    
+    <TextView android:text="Borrar" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <Spinner android:layout_height="wrap_content" android:id="@+id/spinner1" android:layout_width="match_parent"></Spinner>
+    <Button android:text="Borrar" android:onClick="borrar" android:id="@+id/button2" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+   
+    <TextView android:text="Consultar" android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <ListView android:id="@+id/listView1" android:layout_height="wrap_content" android:layout_width="match_parent"></ListView>
+      
+</LinearLayout>
