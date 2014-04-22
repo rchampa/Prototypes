@@ -33,7 +33,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
     
 	private List<Polyline> polylinesList;
-    private GoogleMap map = null;
+    private GoogleMap map;
     private int viewType = 0;
     private String location;
     
@@ -68,41 +68,21 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		            	showLegalNotice();
 						break;
 						
-                    case R.id.menu_vista:
+                    case R.id.menu_view_type:
                             changeTypeView();
                             break;
+                           
+                    case R.id.menu_3d_animation:
+                    		animation3DExample();
+                            break;
                             
-                    case R.id.menu_animar:
-                            //Centramos el mapa en España y con nivel de zoom 5
-                            CameraUpdate camUpd2 = CameraUpdateFactory.newLatLngZoom(new LatLng(40.41, -3.69), 5F);
-                            map.animateCamera(camUpd2);
+                    case R.id.menu_camera_position:
+                            showCameraPosition();
+                    		//this.pos_actual = map.getMyLocation();
                             break;
-                    case R.id.menu_3d:
-                            LatLng madrid = new LatLng(40.417325, -3.683081);
-                            CameraPosition camPos = new CameraPosition.Builder()
-                                        .target(madrid)   //Centramos el mapa en Madrid
-                                        .zoom(19)         //Establecemos el zoom en 19
-                                        .bearing(45)      //Establecemos la orientaci�n con el noreste arriba
-                                        .tilt(70)         //Bajamos el punto de vista de la c�mara 70 grados
-                                        .build();
                             
-                            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
-                            map.animateCamera(camUpd3);
-                            break;
-                    case R.id.menu_posicion:
-//                            CameraPosition camPos2 = mapa.getCameraPosition();
-//                            LatLng pos = camPos2.target;
-//                            Toast.makeText(MainActivity.this, 
-//                                            "Lat: " + pos.latitude + " - Lng: " + pos.longitude, 
-//                                            Toast.LENGTH_LONG).show();
-                    		this.pos_actual = map.getMyLocation();
-                    		
-                            break;
                     case R.id.Madrid_Barcelona:
-                    	LatLng Madrid = new LatLng(40.416690900000000000, -3.700345400000060000);
-                    	LatLng Barcelona = new LatLng(41.387917000000000000, 2.169918700000039300);
-                    	String url = makeURL(Madrid.latitude, Madrid.longitude, Barcelona.latitude, Barcelona.longitude);
-                		new MyAsyncTask(this,url).execute();
+                    	routeFromMadridToBarcelona();
                 		break;
                 		
                     case R.id.menu_borrar_polylineas:
@@ -110,7 +90,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
         				break;
         				
                     case R.id.menu_direccion:
-        				String direccion = "Fernando el catolico 48, Madrid";	
+        				String direccion = "Fernando el catolico 58, Madrid";	
         				if(direccion!=null){
         					try {
 	        					Geocoder geocoder = new Geocoder(this);  
@@ -157,28 +137,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             
             return super.onOptionsItemSelected(item);
     }
-    
-    
-    private void showLegalNotice() {
+
+	private void showLegalNotice() {
     	String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this);
 		AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(this);
 		LicenseDialog.setTitle("Legal Notices");
 		LicenseDialog.setMessage(LicenseInfo);
 		LicenseDialog.show();
 	}
-
-	private boolean estaEnElRadio(Location mi_posicion, Location otra_posicion, double radio) {
-    	
-        double distancia = mi_posicion.distanceTo(otra_posicion);
-        // if less than 10 metres
-        if (distancia < radio) {
-            return true;         
-        } 
-        else{
-            return false;
-        }
-    }
-    
     
     private void changeTypeView()
     {
@@ -200,6 +166,53 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
                             break;
             }
     }
+    
+    private void animation3DExample() {
+    	LatLng madrid = new LatLng(40.417325, -3.683081);
+        CameraPosition camPos = new CameraPosition.Builder()
+                    .target(madrid)   //Center camera in 'Plaza Maestro Villa'
+                    .zoom(19)         //Set 19 level zoom
+                    .bearing(45)      //Set the orientation to northeast
+                    .tilt(70)         //Set 70 degrees tilt
+                    .build();
+        
+        CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+        map.animateCamera(camUpd3);
+        
+        Toast.makeText(this, this.getString(R.string.city_3d), Toast.LENGTH_SHORT).show();
+		
+	}
+    
+    private void showCameraPosition() {
+		CameraPosition camPos2 = map.getCameraPosition();
+        LatLng cam_pos = camPos2.target;
+        Toast.makeText(	MainActivity.this, "Lat: " + cam_pos.latitude + " - Lng: "+
+        				cam_pos.longitude, Toast.LENGTH_LONG).show();
+		
+	}
+    
+    private void routeFromMadridToBarcelona() {
+    	//Positions of Madrid and Barcelona
+		LatLng Madrid = new LatLng(40.416690900000000000, -3.700345400000060000);
+    	LatLng Barcelona = new LatLng(41.387917000000000000, 2.169918700000039300);
+    	String url = makeURL(Madrid.latitude, Madrid.longitude, Barcelona.latitude, Barcelona.longitude);
+		new MyAsyncTask(this,url).execute();
+	}
+    
+	private boolean estaEnElRadio(Location mi_posicion, Location otra_posicion, double radio) {
+    	
+        double distancia = mi_posicion.distanceTo(otra_posicion);
+        // if less than 10 metres
+        if (distancia < radio) {
+            return true;         
+        } 
+        else{
+            return false;
+        }
+    }
+    
+    
+    
     
     private void borrarPolylineas(){
 		 for(Polyline linea: polylinesList){
@@ -247,7 +260,15 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	                polylinesList.add(line);
 	            }
 	           
+	           //updating camera... just for cosmetic purposes
+	           LatLng madrid = new LatLng(41.45421586734046, -1.1424993351101875);
+	           CameraPosition camPos = new CameraPosition.Builder()
+	                       .target(madrid)   //Center camera in 'Plaza Maestro Villa'
+	                       .zoom(6)         //Set 19 level zoom
+	                       .build();
 	           
+	           CameraUpdate camUpd = CameraUpdateFactory.newCameraPosition(camPos);
+	           map.animateCamera(camUpd);
 
 	    } 
 	    catch (JSONException e) {

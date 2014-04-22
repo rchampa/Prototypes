@@ -221,18 +221,16 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001c;
     }
     public static final class id {
-        public static final int Madrid_Barcelona=0x7f05000b;
+        public static final int Madrid_Barcelona=0x7f05000a;
         public static final int hybrid=0x7f050004;
         public static final int map=0x7f050005;
-        public static final int menu_3d=0x7f050009;
-        public static final int menu_animar=0x7f050008;
-        public static final int menu_borrar_polylineas=0x7f05000c;
-        public static final int menu_direccion=0x7f05000d;
-        public static final int menu_legalnotices=0x7f05000f;
-        public static final int menu_mostrar_radio=0x7f05000e;
-        public static final int menu_mover=0x7f050007;
-        public static final int menu_posicion=0x7f05000a;
-        public static final int menu_vista=0x7f050006;
+        public static final int menu_3d_animation=0x7f050008;
+        public static final int menu_borrar_polylineas=0x7f05000b;
+        public static final int menu_camera_position=0x7f050009;
+        public static final int menu_direccion=0x7f05000c;
+        public static final int menu_legalnotices=0x7f050006;
+        public static final int menu_mostrar_radio=0x7f05000d;
+        public static final int menu_view_type=0x7f050007;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
@@ -273,6 +271,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int camera_position=0x7f060023;
+        public static final int city_3d=0x7f06001f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -346,9 +346,14 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060013;
         public static final int hello_world=0x7f06001d;
         public static final int legal_notice=0x7f06001e;
+        public static final int loading_message=0x7f060020;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
+        public static final int show_route=0x7f060024;
+        public static final int specific_address=0x7f060025;
+        public static final int threed_animation=0x7f060022;
+        public static final int view_type=0x7f060021;
     }
     public static final class style {
         /** 

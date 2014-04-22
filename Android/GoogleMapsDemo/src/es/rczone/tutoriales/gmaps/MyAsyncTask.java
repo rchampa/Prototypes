@@ -14,14 +14,14 @@ public class MyAsyncTask extends AsyncTask<Void, Void, String> {
 	public MyAsyncTask(Activity context,String urlPass){
 		this.context = context;
 		url = urlPass;
-		listener = (IResponse)listener;
+		listener = (IResponse)context;
 	}
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Calculando ruta, por favor espere...");
+        progressDialog.setMessage(context.getString(R.string.loading_message));
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();

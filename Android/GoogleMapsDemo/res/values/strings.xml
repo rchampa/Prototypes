@@ -6,5 +6,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="legal_notice">The icon for this application is a 
         property of </string>
+        
+    <string name="city_3d">Plaza Maestro Villa</string>
+    <string name="loading_message">Loading route from Madrid to Barcelona…</string>
+        
+    <string name="view_type">Change view type</string>
+    <string name="threed_animation">3d animation</string>
+    <string name="camera_position">Show camera position</string>
+    <string name="show_route">Route from Madrid to Barcelona</string>
+    <string name="specific_address">Enter an address</string>
 
 </resources>
