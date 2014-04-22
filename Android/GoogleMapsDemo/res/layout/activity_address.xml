@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
 		android:layout_above="@+id/but_show_location"
         android:orientation="vertical"    
-        android:gravity="center" >
+        android:gravity="center"
+        android:layout_alignParentTop="true" >
  
             
         <LinearLayout
@@ -22,9 +23,10 @@
 	            android:id="@+id/et_address"
 	            android:layout_weight="9"
 	            android:layout_width="0dp"
-	            android:layout_height="match_parent"
+	            android:layout_height="wrap_content"
 	            android:ems="10"
-	            android:hint="@string/specific_address"  />
+	            android:hint="@string/specific_address" 
+	            />
         
         	<ImageButton
 		        android:id="@+id/but_search"
@@ -39,7 +41,7 @@
         </LinearLayout>
         
         <ListView
-            android:id="@+id/listView1"
+            android:id="@+id/address_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>

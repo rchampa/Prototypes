@@ -33,6 +33,12 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name="es.rczone.tutoriales.gmaps.AddressActivity"
+            android:label="@string/app_name" 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize">
+        </activity>
+        
         <meta-data android:name="com.google.android.maps.v2.API_KEY"
                android:value="AIzaSyAXTaCPBmK82DR-1TrHVu_r-PAOKaEVk_w"/>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
