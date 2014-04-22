@@ -9,12 +9,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,11 +30,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MainActivity extends android.support.v4.app.FragmentActivity {
+public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
     
-	private List<Polyline> listaPolylineas;
-    private GoogleMap mapa = null;
-    private int vista = 0;
+	private List<Polyline> polylinesList;
+    private GoogleMap map = null;
+    private int viewType = 0;
     private String location;
     
     private Circle circulo_radio;
@@ -47,12 +45,12 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             
-            mapa = ((SupportMapFragment) getSupportFragmentManager()
+            map = ((SupportMapFragment) getSupportFragmentManager()
                                .findFragmentById(R.id.map)).getMap();
             
-            listaPolylineas = new ArrayList<Polyline>();
+            polylinesList = new ArrayList<Polyline>();
             
-            mapa.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(true);
     }
     
     @Override
@@ -67,26 +65,17 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
             switch(item.getItemId())
             {
 		            case R.id.menu_legalnotices:
-						String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this);
-						AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(this);
-						LicenseDialog.setTitle("Legal Notices");
-						LicenseDialog.setMessage(LicenseInfo);
-						LicenseDialog.show();
+		            	showLegalNotice();
 						break;
+						
                     case R.id.menu_vista:
-                            alternarVista();
+                            changeTypeView();
                             break;
-                    case R.id.menu_mover:                  
-                            //Centramos el mapa en Espa�a
-                            CameraUpdate camUpd1 = 
-                                    CameraUpdateFactory.newLatLng(new LatLng(40.41, -3.69));
-                            mapa.moveCamera(camUpd1);
-                            break;
+                            
                     case R.id.menu_animar:
-                            //Centramos el mapa en Espa�a y con nivel de zoom 5
-                            CameraUpdate camUpd2 = 
-                                    CameraUpdateFactory.newLatLngZoom(new LatLng(40.41, -3.69), 5F);
-                            mapa.animateCamera(camUpd2);
+                            //Centramos el mapa en España y con nivel de zoom 5
+                            CameraUpdate camUpd2 = CameraUpdateFactory.newLatLngZoom(new LatLng(40.41, -3.69), 5F);
+                            map.animateCamera(camUpd2);
                             break;
                     case R.id.menu_3d:
                             LatLng madrid = new LatLng(40.417325, -3.683081);
@@ -97,10 +86,8 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
                                         .tilt(70)         //Bajamos el punto de vista de la c�mara 70 grados
                                         .build();
                             
-                            CameraUpdate camUpd3 = 
-                                            CameraUpdateFactory.newCameraPosition(camPos);
-                            
-                            mapa.animateCamera(camUpd3);
+                            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+                            map.animateCamera(camUpd3);
                             break;
                     case R.id.menu_posicion:
 //                            CameraPosition camPos2 = mapa.getCameraPosition();
@@ -108,15 +95,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 //                            Toast.makeText(MainActivity.this, 
 //                                            "Lat: " + pos.latitude + " - Lng: " + pos.longitude, 
 //                                            Toast.LENGTH_LONG).show();
-                    		this.pos_actual = mapa.getMyLocation();
+                    		this.pos_actual = map.getMyLocation();
                     		
                             break;
                     case R.id.Madrid_Barcelona:
                     	LatLng Madrid = new LatLng(40.416690900000000000, -3.700345400000060000);
                     	LatLng Barcelona = new LatLng(41.387917000000000000, 2.169918700000039300);
                     	String url = makeURL(Madrid.latitude, Madrid.longitude, Barcelona.latitude, Barcelona.longitude);
-                		new connectAsyncTask(url).execute();
-                		//insertarMarcador(Barcelona.latitude, Barcelona.longitude, "Barcelona", , BitmapDescriptorFactory.fromResource(recursoIcon));
+                		new MyAsyncTask(this,url).execute();
                 		break;
                 		
                     case R.id.menu_borrar_polylineas:
@@ -158,7 +144,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	                    	circleOptions.strokeColor(Color.BLUE);
 	                    	circleOptions.fillColor(Color.argb(100, 0, 0, 255));
 	
-		                    circulo_radio = mapa.addCircle(circleOptions);
+		                    circulo_radio = map.addCircle(circleOptions);
                     	}
                     	else{
                     		LatLng pos = new LatLng(pos_actual.getLatitude(), pos_actual.getLongitude());
@@ -173,7 +159,15 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
     }
     
     
-    private boolean estaEnElRadio(Location mi_posicion, Location otra_posicion, double radio) {
+    private void showLegalNotice() {
+    	String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this);
+		AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(this);
+		LicenseDialog.setTitle("Legal Notices");
+		LicenseDialog.setMessage(LicenseInfo);
+		LicenseDialog.show();
+	}
+
+	private boolean estaEnElRadio(Location mi_posicion, Location otra_posicion, double radio) {
     	
         double distancia = mi_posicion.distanceTo(otra_posicion);
         // if less than 10 metres
@@ -186,29 +180,29 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
     }
     
     
-    private void alternarVista()
+    private void changeTypeView()
     {
-            vista = (vista + 1) % 4;
+            viewType = (viewType + 1) % 4;
             
-            switch(vista)
+            switch(viewType)
             {
                     case 0:
-                            mapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                             break;
                     case 1:
-                            mapa.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                            map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                             break;
                     case 2:
-                            mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                             break;
                     case 3:
-                            mapa.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                            map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                             break;
             }
     }
     
     private void borrarPolylineas(){
-		 for(Polyline linea: listaPolylineas){
+		 for(Polyline linea: polylinesList){
 			 //linea.setVisible(false);
 			 linea.remove();
 		 }
@@ -229,7 +223,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
         return urlString.toString();
 	}
 	
-	private void drawPath(String  result) {
+	public void drawPath(String  result) {
 
 	    try {
 	            //Tranform the string into a json object
@@ -243,21 +237,21 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	           for(int z = 0; z<list.size()-1;z++){
 	                LatLng src= list.get(z);
 	                LatLng dest= list.get(z+1);
-	                Polyline line = mapa.addPolyline(new PolylineOptions()
+	                Polyline line = map.addPolyline(new PolylineOptions()
 	                .add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude,   dest.longitude))
 	                .width(2)
 	                .color(Color.BLUE)
 	                .geodesic(true)
 	                .width(6f)
 	                );
-	                listaPolylineas.add(line);
+	                polylinesList.add(line);
 	            }
 	           
 	           
 
 	    } 
 	    catch (JSONException e) {
-
+	    	e.printStackTrace();
 	    }
 	} 
 	
@@ -295,35 +289,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	    return poly;
 	}
 	
-	private class connectAsyncTask extends AsyncTask<Void, Void, String>{
-	    private ProgressDialog progressDialog;
-	    String url;
-	    connectAsyncTask(String urlPass){
-	        url = urlPass;
-	    }
-	    @Override
-	    protected void onPreExecute() {
-	        super.onPreExecute();
-	        progressDialog = new ProgressDialog(MainActivity.this);
-	        progressDialog.setMessage("Calculando ruta, por favor espere...");
-	        progressDialog.setIndeterminate(true);
-	        progressDialog.setCancelable(false);
-	        progressDialog.show();
-	    }
-	    @Override
-	    protected String doInBackground(Void... params) {
-	        JSONParser jParser = new JSONParser();
-	        String json = jParser.getJSONFromUrl(url);
-	        return json;
-	    }
-	    @Override
-	    protected void onPostExecute(String result) {
-	        super.onPostExecute(result);   
-	        progressDialog.hide();        
-	        if(result!=null){
-	            drawPath(result);
-	        }
-	    }
-	}
+	
 }
 
