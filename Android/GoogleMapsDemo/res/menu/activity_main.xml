@@ -25,6 +25,11 @@
         android:showAsAction="never"
         android:title="@string/show_route"/>
     
+    <item android:id="@+id/enter_address"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/specific_address"/>
+    
     
     <item android:id="@+id/kml_madrid"
         android:orderInCategory="100"

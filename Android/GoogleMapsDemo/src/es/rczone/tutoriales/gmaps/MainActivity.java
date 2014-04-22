@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -46,6 +47,10 @@ import es.rczone.tutoriales.gmaps.kml.Placemark;
 
 public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
     
+	
+	public static int RESULT_OK = 1000;
+	public static int RESULT_CANCELED = 1001;
+	
 	private List<Polyline> polylinesList;
     private GoogleMap map;
     private int viewType = 0;
@@ -83,21 +88,24 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 						break;
 						
                     case R.id.menu_view_type:
-                            changeTypeView();
-                            break;
+                        changeTypeView();
+                        break;
                            
                     case R.id.menu_3d_animation:
-                    		animation3DExample();
-                            break;
+                		animation3DExample();
+                        break;
                             
                     case R.id.menu_camera_position:
-                            showCameraPosition();
-                    		//this.pos_actual = map.getMyLocation();
-                            break;
+                        showCameraPosition();
+                		//this.pos_actual = map.getMyLocation();
+                        break;
                             
                     case R.id.Madrid_Barcelona:
                     	routeFromMadridToBarcelona();
                 		break;
+                	
+                    case R.id.enter_address:
+                    	enterAddress();
                 		
                     case R.id.kml_madrid:
                     	kmlOfMadrid();
@@ -155,6 +163,11 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             
             return super.onOptionsItemSelected(item);
     }
+
+	private void enterAddress() {
+		Intent i = new Intent(this, AddressActivity.class);
+		startActivityForResult(i, 1);
+	}
 
 	private void kmlOfMadrid() {
 
