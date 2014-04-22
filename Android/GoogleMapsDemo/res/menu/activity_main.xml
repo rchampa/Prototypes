@@ -26,6 +26,12 @@
         android:title="@string/show_route"/>
     
     
+    <item android:id="@+id/kml_madrid"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/kml_madrid"/>
+    
+    
     
     <item android:id="@+id/menu_borrar_polylineas"
         android:orderInCategory="100"

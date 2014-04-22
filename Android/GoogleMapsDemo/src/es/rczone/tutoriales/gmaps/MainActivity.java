@@ -1,12 +1,20 @@
 package es.rczone.tutoriales.gmaps;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
@@ -27,8 +35,14 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import es.rczone.tutoriales.gmaps.kml.NavigationDataSet;
+import es.rczone.tutoriales.gmaps.kml.NavigationSaxHandler;
+import es.rczone.tutoriales.gmaps.kml.Placemark;
 
 public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
     
@@ -85,6 +99,10 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
                     	routeFromMadridToBarcelona();
                 		break;
                 		
+                    case R.id.kml_madrid:
+                    	kmlOfMadrid();
+                		break;
+                		
                     case R.id.menu_borrar_polylineas:
         				borrarPolylineas();				
         				break;
@@ -137,6 +155,12 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             
             return super.onOptionsItemSelected(item);
     }
+
+	private void kmlOfMadrid() {
+
+		cargarKML("Asturias/Allande.kml");
+		
+	}
 
 	private void showLegalNotice() {
     	String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this);
@@ -264,7 +288,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	           LatLng madrid = new LatLng(41.45421586734046, -1.1424993351101875);
 	           CameraPosition camPos = new CameraPosition.Builder()
 	                       .target(madrid)   //Center camera in 'Plaza Maestro Villa'
-	                       .zoom(6)         //Set 19 level zoom
+	                       .zoom(6)         //Set 6 level zoom
 	                       .build();
 	           
 	           CameraUpdate camUpd = CameraUpdateFactory.newCameraPosition(camPos);
@@ -276,6 +300,12 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	    }
 	} 
 	
+	/**
+	 * Advice: Don't try to understand this code, does not worth it.
+	 * 
+	 * @param encoded text response from google query
+	 * @return a list of LatLng object that describes the route
+	 */
 	private List<LatLng> decodePoly(String encoded) {
 
 	    List<LatLng> poly = new ArrayList<LatLng>();
@@ -308,6 +338,92 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	    }
 
 	    return poly;
+	}
+	
+	
+	
+	private void cargarKML(String ruta){
+    	try {
+			InputStream is_kml = getResources().getAssets().open(ruta);
+			
+            // create the factory
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            // create a parser
+            SAXParser parser;
+			parser = factory.newSAXParser();
+			
+            // create the reader (scanner)
+            XMLReader xmlreader = parser.getXMLReader();
+            // instantiate our handler
+            NavigationSaxHandler navSaxHandler = new NavigationSaxHandler();
+            // assign our handler
+            xmlreader.setContentHandler(navSaxHandler);
+            // get our data via the url class
+            InputSource is = new InputSource(is_kml);
+            // perform the synchronous parse           
+            xmlreader.parse(is);
+            	
+            // get the results - should be a fully populated RSSFeed instance, or null on error
+            NavigationDataSet ds = navSaxHandler.getParsedData();
+           
+            Placemark place = ds.getPlacemarks().get(0);
+            
+            String coordenadas = place.getCoordinates();
+             
+            List<LatLng> lista = new ArrayList<LatLng>();
+            
+            String[] coors = coordenadas.split(" ");
+            for(String c : coors){
+            	String[] cols = c.split(",");
+            	double latitude = Double.parseDouble(cols[1].trim());
+            	double longitude = Double.parseDouble(cols[0].trim());
+            	LatLng l = new LatLng(latitude, longitude);
+            	lista.add(l);
+            }
+            
+            drawPathKML(lista);
+
+            LatLng madrid = lista.get(lista.size()/2);
+            CameraPosition camPos = new CameraPosition.Builder()
+                        .target(madrid)   //Centramos el mapa en Madrid
+                        .zoom(10)         //Establecemos el zoom en 19
+                        .build();
+            
+            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+            
+            map.animateCamera(camUpd3);
+           
+			
+    	} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+    	} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+	
+	private void drawPathKML(List<LatLng>  list) {
+		PolygonOptions opciones = new PolygonOptions()
+		 .fillColor(Color.argb(100, 0, 0, 255))
+		 .strokeWidth(5f)
+		 .strokeColor(Color.BLUE)
+		 .geodesic(true);
+		 	 
+		for(int z = 0; z<list.size()-1;z++){
+			LatLng src= list.get(z);
+		    LatLng dest= list.get(z+1);
+		     opciones = opciones.add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude,   dest.longitude));
+		}
+ 
+		Polygon pol = map.addPolygon(opciones);
+	
 	}
 	
 	

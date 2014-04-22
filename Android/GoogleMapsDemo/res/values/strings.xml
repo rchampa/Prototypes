@@ -14,6 +14,7 @@
     <string name="threed_animation">3d animation</string>
     <string name="camera_position">Show camera position</string>
     <string name="show_route">Route from Madrid to Barcelona</string>
+    <string name="kml_madrid">KML of Madrid</string>
     <string name="specific_address">Enter an address</string>
 
 </resources>
