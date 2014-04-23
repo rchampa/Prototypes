@@ -1,11 +1,17 @@
 package es.rczone.tutoriales.gmaps.kml;
 
+import java.util.ArrayList;
+
 public class Placemark {
 
 	private String title;
 	private String description;
-	private String coordinates;
+	private ArrayList<String> coordinates;
 	private String address;
+	
+	public Placemark(){
+		this.coordinates = new ArrayList<String>();
+	}
 
 	public String getTitle() {
 		return title;
@@ -23,12 +29,16 @@ public class Placemark {
 		this.description = description;
 	}
 
-	public String getCoordinates() {
+	public ArrayList<String> getCoordinates() {
 		return coordinates;
 	}
 
-	public void setCoordinates(String coordinates) {
-		this.coordinates = coordinates;
+//	public void setCoordinates(String coordinates) {
+//		this.coordinates = coordinates;
+//	}
+	
+	public void addCoordinates(String coordinates){
+		this.coordinates.add(coordinates);
 	}
 
 	public String getAddress() {

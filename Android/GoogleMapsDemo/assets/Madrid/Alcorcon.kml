@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>Alcorcon</name>
+<Schema name="Alcorcon" id="Alcorcon">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="SP_ID" type="string"></SimpleField>
+	<SimpleField name="AREA" type="float"></SimpleField>
+	<SimpleField name="PERIMETER" type="float"></SimpleField>
+	<SimpleField name="MUNI_" type="int"></SimpleField>
+	<SimpleField name="MUNI_ID" type="int"></SimpleField>
+	<SimpleField name="CODMUNI" type="string"></SimpleField>
+	<SimpleField name="CODPROV" type="string"></SimpleField>
+	<SimpleField name="CODAUTO" type="string"></SimpleField>
+	<SimpleField name="CODCOMAR" type="string"></SimpleField>
+	<SimpleField name="NOMBRE" type="string"></SimpleField>
+	<SimpleField name="POB91" type="int"></SimpleField>
+	<SimpleField name="POB95" type="int"></SimpleField>
+	<SimpleField name="POB95M" type="int"></SimpleField>
+	<SimpleField name="POB95F" type="int"></SimpleField>
+	<SimpleField name="poligono" type="float"></SimpleField>
+	<SimpleField name="CODMUNI_NE" type="float"></SimpleField>
+	<SimpleField name="muni" type="string"></SimpleField>
+	<SimpleField name="INE" type="string"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Alcorcon">
+		<SimpleData name="SP_ID">5635</SimpleData>
+		<SimpleData name="AREA">33627333.45947</SimpleData>
+		<SimpleData name="PERIMETER">27387.27497</SimpleData>
+		<SimpleData name="MUNI_">5635</SimpleData>
+		<SimpleData name="MUNI_ID">5635</SimpleData>
+		<SimpleData name="CODMUNI">28007</SimpleData>
+		<SimpleData name="CODPROV">28</SimpleData>
+		<SimpleData name="CODAUTO">10</SimpleData>
+		<SimpleData name="CODCOMAR">00</SimpleData>
+		<SimpleData name="NOMBRE">Alcorcon</SimpleData>
+		<SimpleData name="POB91">139662</SimpleData>
+		<SimpleData name="POB95">143532</SimpleData>
+		<SimpleData name="POB95M">71305</SimpleData>
+		<SimpleData name="POB95F">72227</SimpleData>
+		<SimpleData name="poligono">5635</SimpleData>
+		<SimpleData name="CODMUNI_NE">28007</SimpleData>
+		<SimpleData name="muni">Alcorcon</SimpleData>
+		<SimpleData name="INE">28007</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.817692376932727,40.327690559230163 -3.838571274319789,40.324539942698607 -3.846794016601749,40.324156276312458 -3.84747480776979,40.325871452152498 -3.854160480513909,40.330552012109791 -3.85909153510221,40.343443418626116 -3.866729887062713,40.346891490733945 -3.867627634167252,40.353526069989492 -3.87083871257409,40.353231666204202 -3.870626055878588,40.358692142605591 -3.878824975587805,40.369736485005149 -3.877855552767789,40.373105311861934 -3.866487739450009,40.373965257096557 -3.867682698080333,40.378018768044221 -3.845789281715222,40.390740000772226 -3.837719037288304,40.403115639725947 -3.830276716113812,40.401637807025558 -3.834662797443826,40.396136122151766 -3.813124867569469,40.369803266309958 -3.810509934838986,40.36391229543829 -3.806879583916873,40.366612224131664 -3.802695216302871,40.363398108992328 -3.787790120058183,40.358762434671831 -3.798905752889498,40.35665915735229 -3.804692141132206,40.353052039376692 -3.799766475773051,40.342762440499186 -3.816975993679832,40.330741801396307 -3.817692376932727,40.327690559230163</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

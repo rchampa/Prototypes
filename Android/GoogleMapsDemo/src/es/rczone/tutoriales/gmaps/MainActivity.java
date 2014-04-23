@@ -20,7 +20,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
@@ -115,25 +114,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
         				borrarPolylineas();				
         				break;
         				
-                    case R.id.menu_direccion:
-        				String direccion = "Fernando el catolico 58, Madrid";	
-        				if(direccion!=null){
-        					try {
-	        					Geocoder geocoder = new Geocoder(this);  
-	        					List<Address> addresses;
-	        					addresses = geocoder.getFromLocationName(direccion, 1);
-	        					if(addresses.size() > 0) {
-	        					    double latitude= addresses.get(0).getLatitude();
-	        					    double longitude= addresses.get(0).getLongitude();
-	        					    Toast.makeText(this, "Latitud="+latitude+" Longitud="+longitude, Toast.LENGTH_SHORT).show();
-	        					}
-        					} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-        				}
-        				break;
-        				
                     case R.id.menu_mostrar_radio:
                     	
                     	if(pos_actual==null){
@@ -197,7 +177,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	
 	private void kmlOfMadrid() {
 
-		cargarKML("Asturias/Allande.kml");
+		cargarKML("Madrid/Don Benito.kml");
 		
 	}
 
@@ -407,25 +387,20 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
            
             Placemark place = ds.getPlacemarks().get(0);
             
-            String coordenadas = place.getCoordinates();
+            ArrayList<String> lista_coordenadas = place.getCoordinates();
              
-            List<LatLng> lista = new ArrayList<LatLng>();
+            LatLng locationToCamera=null;
             
-            String[] coors = coordenadas.split(" ");
-            for(String c : coors){
-            	String[] cols = c.split(",");
-            	double latitude = Double.parseDouble(cols[1].trim());
-            	double longitude = Double.parseDouble(cols[0].trim());
-            	LatLng l = new LatLng(latitude, longitude);
-            	lista.add(l);
-            }
+            for (String coordenadas : lista_coordenadas) {
+            	locationToCamera = draw(coordenadas);
+			}
             
-            drawPathKML(lista);
+            
 
-            LatLng madrid = lista.get(lista.size()/2);
+            
             CameraPosition camPos = new CameraPosition.Builder()
-                        .target(madrid)   //Centramos el mapa en Madrid
-                        .zoom(10)         //Establecemos el zoom en 19
+                        .target(locationToCamera)   //Centramos el mapa en Madrid
+                        .zoom(9)         //Establecemos el zoom en 19
                         .build();
             
             CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
@@ -446,6 +421,24 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			e.printStackTrace();
 		}
     }
+	
+	private LatLng draw(String coordenadas){
+		List<LatLng> lista = new ArrayList<LatLng>();
+        
+        String[] coors = coordenadas.split(" ");
+        for(String c : coors){
+        	String[] cols = c.split(",");
+        	double latitude = Double.parseDouble(cols[1].trim());
+        	double longitude = Double.parseDouble(cols[0].trim());
+        	LatLng l = new LatLng(latitude, longitude);
+        	lista.add(l);
+        }
+        
+        drawPathKML(lista);
+        
+        LatLng locationToCamera = lista.get(lista.size()/2);
+        return locationToCamera;
+	}
 
 	
 	private void drawPathKML(List<LatLng>  list) {

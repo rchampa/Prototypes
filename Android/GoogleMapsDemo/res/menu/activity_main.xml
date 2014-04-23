@@ -43,10 +43,6 @@
         android:showAsAction="never"
         android:title="Limpiar pantalla"/>
     
-    <item android:id="@+id/menu_direccion"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="Introduce una dirección"/>
     
     <item android:id="@+id/menu_mostrar_radio"
         android:orderInCategory="100"
