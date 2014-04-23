@@ -45,11 +45,7 @@ import es.rczone.tutoriales.gmaps.kml.NavigationSaxHandler;
 import es.rczone.tutoriales.gmaps.kml.Placemark;
 
 public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
-    
-	
-//	public static int RESULT_OK = 1000;
-//	public static int RESULT_CANCELED = 1001;
-	
+    	
 	private List<Polyline> polylinesList;
     private GoogleMap map;
     private int viewType = 0;
@@ -254,9 +250,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
         }
     }
     
-    
-    
-    
     private void borrarPolylineas(){
 		 for(Polyline linea: polylinesList){
 			 //linea.setVisible(false);
@@ -394,9 +387,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             for (String coordenadas : lista_coordenadas) {
             	locationToCamera = draw(coordenadas);
 			}
-            
-            
-
             
             CameraPosition camPos = new CameraPosition.Builder()
                         .target(locationToCamera)   //Centramos el mapa en Madrid

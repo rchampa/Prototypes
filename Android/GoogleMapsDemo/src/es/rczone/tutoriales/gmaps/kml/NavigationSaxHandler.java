@@ -1,7 +1,5 @@
 package es.rczone.tutoriales.gmaps.kml;
 
-import java.util.Currency;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -9,7 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class NavigationSaxHandler extends DefaultHandler {
 
 	// ===========================================================
-	// Fields
+	// Tags
 	// ===========================================================
 
 	private int state = 0;
@@ -22,27 +20,17 @@ public class NavigationSaxHandler extends DefaultHandler {
 	private final int state_point = 7;
 	private final int state_coordinates = 8;
 
-	private String buffer;
 	private String coors;
 
 	private NavigationDataSet navigationDataSet = new NavigationDataSet();
 
 	public NavigationDataSet getParsedData() {
-		//navigationDataSet.getCurrentPlacemark().setCoordinates(buffer.toString().trim());
 		return this.navigationDataSet;
 	}
 
-	// ===========================================================
-	// Methods
-	// ===========================================================
 	@Override
 	public void startDocument() throws SAXException {
 		this.navigationDataSet = new NavigationDataSet();
-	}
-
-	@Override
-	public void endDocument() throws SAXException {
-		// Nothing to do
 	}
 
 	/**
@@ -50,8 +38,7 @@ public class NavigationSaxHandler extends DefaultHandler {
 	 * xml was like: <tag attribute="attributeValue">
 	 */
 	@Override
-	public void startElement(String namespaceURI, String localName,
-			String qName, Attributes atts) throws SAXException {
+	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		if (localName.equals("kml")) {
 			this.state = state_kml;
 		} else if (localName.equals("Placemark")) {
@@ -68,7 +55,6 @@ public class NavigationSaxHandler extends DefaultHandler {
 		} else if (localName.equals("point")) {
 			this.state = state_point;
 		} else if (localName.equals("coordinates")) {
-			buffer = "";
 			this.coors = "";
 			this.state = state_coordinates;
 		}
@@ -82,6 +68,7 @@ public class NavigationSaxHandler extends DefaultHandler {
 	public void endElement(String namespaceURI, String localName, String qName)	throws SAXException {
 
 		if (localName.equals("Placemark")) {
+			
 			if ("Route".equals(navigationDataSet.getCurrentPlacemark().getTitle()))
 				navigationDataSet.setRoutePlacemark(navigationDataSet.getCurrentPlacemark());
 			else
@@ -101,20 +88,27 @@ public class NavigationSaxHandler extends DefaultHandler {
 	@Override
 	public void characters(char ch[], int start, int length) {
 		if (this.state == state_name) {
-			if (navigationDataSet.getCurrentPlacemark() == null)
+			
+			if (navigationDataSet.getCurrentPlacemark() == null){
 				navigationDataSet.setCurrentPlacemark(new Placemark());
-			navigationDataSet.getCurrentPlacemark().setTitle(
-					new String(ch, start, length));
+			}
+			
+			navigationDataSet.getCurrentPlacemark().setTitle(new String(ch, start, length));
+			
 		} else if (this.state == state_description) {
-			if (navigationDataSet.getCurrentPlacemark() == null)
+			
+			if (navigationDataSet.getCurrentPlacemark() == null){
 				navigationDataSet.setCurrentPlacemark(new Placemark());
-			navigationDataSet.getCurrentPlacemark().setDescription(
-					new String(ch, start, length));
+			}
+			
+			navigationDataSet.getCurrentPlacemark().setDescription(new String(ch, start, length));
+			
 		} else if (this.state == state_coordinates) { 
-			if (navigationDataSet.getCurrentPlacemark() == null)
+			
+			if (navigationDataSet.getCurrentPlacemark() == null){
 				navigationDataSet.setCurrentPlacemark(new Placemark());
-			// navigationDataSet.getCurrentPlacemark().setCoordinates(new
-			// String(ch, start, length));
+			}
+			
 			coors = coors + (new String(ch, start, length));
 			
 		}
