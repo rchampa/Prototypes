@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class AddressActivity extends Activity{
 
@@ -51,44 +51,83 @@ public class AddressActivity extends Activity{
 			case R.id.but_show_location:
 				int pos = listView.getCheckedItemPosition();
 				Address a= (Address)listView.getAdapter().getItem(pos);
-				Toast.makeText(this, a.getLocality(), Toast.LENGTH_SHORT).show();
+				Intent returnIntent = new Intent();
+				returnIntent.putExtra("result",a);
+				setResult(RESULT_OK,returnIntent);     
+				finish();
 				break;
 		
 		}
 		
 		
 	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent returnIntent = new Intent();
+		setResult(RESULT_CANCELED, returnIntent);        
+		finish();
+	}
 
 
 	private void searchForAddress() {
 		
-		addressList.clear();
-		MyAdapter adapter = (MyAdapter) listView.getAdapter();
-		adapter.clear();
+		AsyncTask<Void, Void, Void> searching = new AsyncTask<Void, Void, Void>() {
 			
-		String address = etAddress.getText().toString();
-		
-		if(address!=null){
-			try {
-				Geocoder geocoder = new Geocoder(this);  
-				List<Address> addresses = geocoder.getFromLocationName(address, MAX_RESULTS);
-//				if(addresses.size() > 0) {
-//				    double latitude= addresses.get(0).getLatitude();
-//				    double longitude= addresses.get(0).getLongitude();
-//				}
-				
-				for (Address a : addresses) {
-					
-					adapter.add(a);
-					
-				}
-				
+			ProgressDialog progressDialog;
+			MyAdapter adapter;
+			String address;
+			List<Address> addresses;
+			
+			
+			@Override
+		    protected void onPreExecute() {
+		        super.onPreExecute();
+		        progressDialog = new ProgressDialog(AddressActivity.this);
+		        progressDialog.setMessage(AddressActivity.this.getString(R.string.loading_message));
+		        progressDialog.setIndeterminate(true);
+		        progressDialog.setCancelable(false);
+		        progressDialog.show();
+		        addressList.clear();
+				adapter = (MyAdapter) listView.getAdapter();
+				adapter.clear();
 				adapter.notifyDataSetChanged();
+				address = etAddress.getText().toString();
+		    }
+			
+			@Override
+			protected Void doInBackground(Void... params) {
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				if(address!=null){
+					try {
+						Geocoder geocoder = new Geocoder(AddressActivity.this);  
+						addresses = geocoder.getFromLocationName(address, MAX_RESULTS);
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				return null;
 			}
-		}
+			
+			@Override
+		    protected void onPostExecute(Void result) {
+		        super.onPostExecute(result);   
+		        
+		        for (Address a : addresses) {
+					adapter.add(a);
+				}
+		        
+		        adapter.notifyDataSetChanged();
+		        
+		        progressDialog.hide();        
+		        
+		        
+		    }
+		};
+		
+		searching.execute();
+		
 	}
 }

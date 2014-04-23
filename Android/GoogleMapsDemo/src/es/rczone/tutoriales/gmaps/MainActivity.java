@@ -48,8 +48,8 @@ import es.rczone.tutoriales.gmaps.kml.Placemark;
 public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
     
 	
-	public static int RESULT_OK = 1000;
-	public static int RESULT_CANCELED = 1001;
+//	public static int RESULT_OK = 1000;
+//	public static int RESULT_CANCELED = 1001;
 	
 	private List<Polyline> polylinesList;
     private GoogleMap map;
@@ -169,6 +169,32 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		startActivityForResult(i, 1);
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+			if (resultCode == RESULT_OK) {
+				Address current_location = data.getExtras().getParcelable("result");
+				LatLng madrid = new LatLng(current_location.getLatitude(), current_location.getLongitude());
+		        CameraPosition camPos = new CameraPosition.Builder()
+		                    .target(madrid)   //Center camera in 'Plaza Maestro Villa'
+		                    .zoom(16)         //Set 16 level zoom
+		                    .build();
+		        
+		        CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+		        map.animateCamera(camUpd3);
+		        String description = current_location.getThoroughfare()+
+		        					" "+current_location.getSubThoroughfare()+
+		        					", "+current_location.getLocality()+
+		        					", "+current_location.getCountryName();
+				Toast.makeText(this, description, Toast.LENGTH_LONG).show();
+			}
+			if (resultCode == RESULT_CANCELED) {
+				// Write your code if there's no result
+			}
+		}
+	}// onActivityResult
+	
 	private void kmlOfMadrid() {
 
 		cargarKML("Asturias/Allande.kml");
