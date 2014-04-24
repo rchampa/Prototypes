@@ -35,7 +35,7 @@
         </activity>
         
         <activity
-            android:name="es.rczone.tutoriales.gmaps.AddressActivity"
+            android:name="es.rczone.tutoriales.gmaps.address.AddressActivity"
             android:label="@string/app_name" 
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize">
         </activity>

@@ -27,6 +27,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,19 +42,39 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import es.rczone.tutoriales.gmaps.address.AddressActivity;
+import es.rczone.tutoriales.gmaps.gps.LocationTracker;
 import es.rczone.tutoriales.gmaps.kml.NavigationDataSet;
 import es.rczone.tutoriales.gmaps.kml.NavigationSaxHandler;
 import es.rczone.tutoriales.gmaps.kml.Placemark;
+import es.rczone.tutoriales.gmaps.route.RouteListener;
+import es.rczone.tutoriales.gmaps.route.MyAsyncTask;
 
-public class MainActivity extends android.support.v4.app.FragmentActivity implements IResponse{
+public class MainActivity extends android.support.v4.app.FragmentActivity implements RouteListener, LocationListener{
     	
 	private List<Polyline> polylinesList;
     private GoogleMap map;
     private int viewType = 0;
-    private String location;
     
     private Circle circulo_radio;
-    private Location pos_actual;
+    private Location currentLocation;
+    
+    //Location tracking
+    private LocationTracker locationTracker;
+    // Milliseconds per second
+    private static final int MILLISECONDS_PER_SECOND = 1000;
+    // Update frequency in seconds
+    public static final int UPDATE_INTERVAL_IN_SECONDS = 5;
+    // Update frequency in milliseconds
+    private static final long UPDATE_INTERVAL =
+            MILLISECONDS_PER_SECOND * UPDATE_INTERVAL_IN_SECONDS;
+    // The fastest update frequency, in seconds
+    private static final int FASTEST_INTERVAL_IN_SECONDS = 1;
+    // A fast frequency ceiling in milliseconds
+    private static final long FASTEST_INTERVAL =
+            MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
+    
+    private static final int SMALLEST_DISPLACEMENT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +87,8 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             polylinesList = new ArrayList<Polyline>();
             
             map.setMyLocationEnabled(true);
+            
+            locationTracker = LocationTracker.getInstance(this);
     }
     
     @Override
@@ -112,14 +136,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
         				
                     case R.id.menu_mostrar_radio:
                     	
-                    	if(pos_actual==null){
+                    	if(currentLocation==null){
                     		Toast.makeText(this, "Primero debes consultar tu posición", Toast.LENGTH_SHORT).show();
                     		super.onOptionsItemSelected(item);
                     	}
                     		
                     	
                     	if(circulo_radio==null){
-                    		LatLng pos = new LatLng(pos_actual.getLatitude(), pos_actual.getLongitude());
+                    		LatLng pos = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 	                    	CircleOptions circleOptions = new CircleOptions();
 	                    	circleOptions.center(pos);
 	                        circleOptions.radius(500); // In meters
@@ -129,7 +153,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		                    circulo_radio = map.addCircle(circleOptions);
                     	}
                     	else{
-                    		LatLng pos = new LatLng(pos_actual.getLatitude(), pos_actual.getLongitude());
+                    		LatLng pos = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                     		circulo_radio.setCenter(pos);
                     		circulo_radio.setRadius(200);
                     	}
@@ -446,6 +470,34 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
  
 		Polygon pol = map.addPolygon(opciones);
 	
+	}
+	
+	
+	
+	//More about location tracking...
+	
+	@Override
+    protected void onStart() {
+        super.onStart();
+        if(!locationTracker.hasLocationUpdatesEnabled())
+                locationTracker.setStartUpdates(LocationRequest.PRIORITY_HIGH_ACCURACY, UPDATE_INTERVAL, FASTEST_INTERVAL,SMALLEST_DISPLACEMENT);
+    }
+ 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        locationTracker.addLocationListener(this);
+    }
+ 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationTracker.removeLocationListener(this);
+    }	
+
+	@Override
+	public void onLocationChanged(Location location) {
+		currentLocation = new Location(location);		
 	}
 	
 	

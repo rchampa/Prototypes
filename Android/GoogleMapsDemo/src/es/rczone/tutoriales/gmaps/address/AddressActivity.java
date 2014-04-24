@@ -1,9 +1,13 @@
-package es.rczone.tutoriales.gmaps;
+package es.rczone.tutoriales.gmaps.address;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.rczone.tutoriales.gmaps.R;
+import es.rczone.tutoriales.gmaps.R.id;
+import es.rczone.tutoriales.gmaps.R.layout;
+import es.rczone.tutoriales.gmaps.R.string;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;

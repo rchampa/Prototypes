@@ -1,4 +1,4 @@
-package es.rczone.tutoriales.gmaps;
+package es.rczone.tutoriales.gmaps.route;
 
 import java.io.BufferedReader;
 import java.io.IOException;

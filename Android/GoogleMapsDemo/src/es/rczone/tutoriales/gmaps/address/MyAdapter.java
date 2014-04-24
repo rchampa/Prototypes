@@ -1,4 +1,4 @@
-package es.rczone.tutoriales.gmaps;
+package es.rczone.tutoriales.gmaps.address;
 
 import java.util.ArrayList;
 

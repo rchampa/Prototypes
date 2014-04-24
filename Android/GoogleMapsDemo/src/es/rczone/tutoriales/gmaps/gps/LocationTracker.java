@@ -94,7 +94,7 @@ public class LocationTracker implements
 
 	@Override
 	public void onDisconnected() {
-
+		Toast.makeText(context, "Disconnected. Please re-connect.", Toast.LENGTH_SHORT).show();
 	}
 
 	public synchronized void addLocationListener(LocationListener listener) {
@@ -105,9 +105,6 @@ public class LocationTracker implements
 		locationListeners.remove(listener);
 	}
 
-	public boolean hasLocationListenerSubscribed(LocationListener listener) {
-		return locationListeners.contains(listener);
-	}
 
 	@Override
 	public synchronized void onLocationChanged(Location location) {

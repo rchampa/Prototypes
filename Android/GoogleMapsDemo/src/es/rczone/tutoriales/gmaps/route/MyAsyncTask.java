@@ -1,5 +1,7 @@
-package es.rczone.tutoriales.gmaps;
+package es.rczone.tutoriales.gmaps.route;
 
+import es.rczone.tutoriales.gmaps.R;
+import es.rczone.tutoriales.gmaps.R.string;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -9,12 +11,12 @@ public class MyAsyncTask extends AsyncTask<Void, Void, String> {
 	private Activity context;
 	private ProgressDialog progressDialog;
     private String url;
-    private IResponse listener;
+    private RouteListener listener;
 	
 	public MyAsyncTask(Activity context,String urlPass){
 		this.context = context;
 		url = urlPass;
-		listener = (IResponse)context;
+		listener = (RouteListener)context;
 	}
 
     @Override
