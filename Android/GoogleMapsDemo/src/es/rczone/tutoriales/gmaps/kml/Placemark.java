@@ -32,10 +32,6 @@ public class Placemark {
 	public ArrayList<String> getCoordinates() {
 		return coordinates;
 	}
-
-//	public void setCoordinates(String coordinates) {
-//		this.coordinates = coordinates;
-//	}
 	
 	public void addCoordinates(String coordinates){
 		this.coordinates.add(coordinates);

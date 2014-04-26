@@ -1,10 +1,9 @@
 package es.rczone.tutoriales.gmaps.route;
 
-import es.rczone.tutoriales.gmaps.R;
-import es.rczone.tutoriales.gmaps.R.string;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import es.rczone.tutoriales.gmaps.R;
 
 public class MyAsyncTask extends AsyncTask<Void, Void, String> {
 	

@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
 		android:layout_above="@+id/but_show_location"
         android:orientation="vertical"    
-        android:gravity="center"
         android:layout_alignParentTop="true" >
  
             

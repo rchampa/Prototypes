@@ -18,6 +18,15 @@ import com.google.android.gms.location.LocationRequest;
  * This class implements the singleton pattern
  * @author Ricardo
  *
+ * Use this class only when the app needs a finer grain control,
+ * otherwise use LocationClient class getLastLocation method instead.
+ * 
+ * LocationClient is for it to blend data from 
+ * multiple sources (GPS, WiFi, cell towers, sensors, etc.).
+ * 
+ * User have to have Google Play Services installed, 
+ * meaning it wont work on any "non-google-approved" phone models, 
+ * and in some instances you'll have to tell users they need to install it.
  */
 public class LocationTracker implements
 		GooglePlayServicesClient.OnConnectionFailedListener,
@@ -29,8 +38,8 @@ public class LocationTracker implements
 	private static LocationTracker locationTracker;
 	private List<LocationListener> locationListeners;
 	
-	private static final String PREF = "location";
-	private static final String PREF_FILE = "LOCATION_PREF_FILE";
+	private final String LOCATION_KEY = "location";
+	private final String PREFERENCES = "LOCATION_PREF_FILE";
 	
 	private Location location;
 
@@ -122,8 +131,8 @@ public class LocationTracker implements
 	}
 
 	private Location getStoredLocation() {
-		String storedLocation = context.getSharedPreferences(PREF_FILE,
-				Context.MODE_PRIVATE).getString(PREF, "");
+		String storedLocation = context.getSharedPreferences(PREFERENCES,
+				Context.MODE_PRIVATE).getString(LOCATION_KEY, "");
 		if (storedLocation.isEmpty()) {
 			return null;
 		}
@@ -131,8 +140,8 @@ public class LocationTracker implements
 	}
 
 	private void storeLocation(Location location) {
-		context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit()
-				.putString(PREF, location.toString()).commit();
+		context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE).edit()
+				.putString(LOCATION_KEY, location.toString()).commit();
 	}
 
 	public Location getLastLocation() {

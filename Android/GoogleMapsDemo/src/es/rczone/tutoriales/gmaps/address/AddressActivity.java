@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.rczone.tutoriales.gmaps.R;
-import es.rczone.tutoriales.gmaps.R.id;
-import es.rczone.tutoriales.gmaps.R.layout;
-import es.rczone.tutoriales.gmaps.R.string;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import es.rczone.tutoriales.gmaps.R;
 
 public class AddressActivity extends Activity{
 
@@ -39,7 +36,6 @@ public class AddressActivity extends Activity{
             MyAdapter adapter = new MyAdapter(this, addressList);
             listView.setAdapter(adapter);
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            
             
     }
 	

@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -58,6 +61,9 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
     
     private Circle circulo_radio;
     private Location currentLocation;
+    
+    //Address location
+    private List<Marker> markersList;
     
     //Location tracking
     private LocationTracker locationTracker;
@@ -81,14 +87,30 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             
-            map = ((SupportMapFragment) getSupportFragmentManager()
-                               .findFragmentById(R.id.map)).getMap();
+            setUpMapIfNeeded();
             
             polylinesList = new ArrayList<Polyline>();
+            markersList = new ArrayList<Marker>();
             
             map.setMyLocationEnabled(true);
             
             locationTracker = LocationTracker.getInstance(this);
+    }
+    
+    private void setUpMapIfNeeded() {
+        if (map == null) {
+
+            Log.e("", "Into null map");
+            map = ((SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map)).getMap();
+
+
+            if (map != null) {
+                Log.e("", "Into full map");
+                map.setMyLocationEnabled(true);
+                map.getUiSettings().setZoomControlsEnabled(false);
+            }
+        }
     }
     
     @Override
@@ -171,13 +193,16 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+		/**
+		 * Result for Address activity
+		 */
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
 				Address current_location = data.getExtras().getParcelable("result");
-				LatLng madrid = new LatLng(current_location.getLatitude(), current_location.getLongitude());
+				LatLng addressLocation = new LatLng(current_location.getLatitude(), current_location.getLongitude());
 		        CameraPosition camPos = new CameraPosition.Builder()
-		                    .target(madrid)   //Center camera in 'Plaza Maestro Villa'
+		                    .target(addressLocation)   //Center camera in 'Plaza Maestro Villa'
 		                    .zoom(16)         //Set 16 level zoom
 		                    .build();
 		        
@@ -187,6 +212,11 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		        					" "+current_location.getSubThoroughfare()+
 		        					", "+current_location.getLocality()+
 		        					", "+current_location.getCountryName();
+		        
+		        
+		        Marker m = map.addMarker(new MarkerOptions().position(addressLocation));
+		        markersList.add(m);
+
 				Toast.makeText(this, description, Toast.LENGTH_LONG).show();
 			}
 			if (resultCode == RESULT_CANCELED) {
@@ -197,8 +227,8 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	
 	private void kmlOfMadrid() {
 
-		cargarKML("Madrid/Don Benito.kml");
-		
+		cargarKML("Madrid/Alcorcon.kml");
+		Toast.makeText(this, "Alcorcon, Madrid", Toast.LENGTH_SHORT).show();
 	}
 
 	private void showLegalNotice() {
@@ -423,15 +453,10 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
            
 			
     	} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
     	} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -486,6 +511,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
     @Override
     protected void onResume() {
         super.onResume();
+        setUpMapIfNeeded();
         locationTracker.addLocationListener(this);
     }
  
